@@ -1,0 +1,27 @@
+CREATE TABLE `Users` (
+	`u_id` INT NOT NULL AUTO_INCREMENT
+    ,`u_name` varchar(50) NOT NULL
+	,`u_username` varchar(50) NOT NULL
+    ,`u_pwd` varchar(20) NOT NULL
+	,`u_address` varchar(100) NOT NULL
+    ,`u_dob` varchar(15) NOT NULL
+	,`u_occupation` varchar(50) NOT NULL
+    ,`u_phonenum` varchar (15) NOT NULL
+	,`u_email` varchar(50) NOT NULL
+    ,`u_SIN` varchar(100) NOT NULL
+	,`u_creditcard` varchar(100) NOT NULL
+
+	,PRIMARY KEY (`u_id`)
+    ,UNIQUE (`u_id`)
+) ENGINE = INNODB;
+
+
+
+INSERT INTO Users (
+	u_name, 
+    u_username, u_pwd, 
+    u_address, u_dob, 
+    u_occupation, u_phonenum, 
+    u_email, u_SIN, u_creditcard) VALUES ('Turtile', 'gamingturtile', 
+		'abc123', '123 ABC Way', '10/31/19XX', 'Student', '647-123-4567',
+        'gamingturtile@random.com', '123456789012345', '1234567890');
