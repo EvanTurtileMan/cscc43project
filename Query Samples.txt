@@ -1,0 +1,29 @@
+1. Find all usernames of users who are CEOs and who are hosts
+	SELECT u_username FROM Users WHERE u_occupation=CEO AND u_hoster=true
+
+2. Find all listing IDs that are houses (townhouses, lighthouses, etc) and whose price is less than 50 dollars a day
+	SELECT l_id FROM Listings WHERE l_propertyType LIKE "%house%" AND l_price<50
+	
+3. Find the name of the host who has a listing at 6 Eastwood Road
+	SELECT u_name FROM Users AS a NATURAL JOIN Listings AS b WHERE b.l_address="6 Eastwood Road"
+	
+4. Find the IDs of the 10 most expensive listings
+	SELECT l_id FROM Listings ORDER BY l_price DESC LIMIT 10
+	
+5. Find the price and property types of listings that are available on December 25, 2016 
+	SELECT l_price, l_propertyType FROM Listings WHERE l_date LIKE "%12/25/2016%"
+	
+6. Find all listing IDs of listings that are priced between $50 to $100 dollars a day and that include internet and A/C but not pet friendly
+	SELECT l_id FROM Listings WHERE l_price BETWEEN 50 AND 100 AND l_amenities LIKE "%internet%" AND l_amenities LIKE "%A/C%" AND l_amenities NOT LIKE "%pet friendly%"
+	
+7. See what a table of users and their listings looks like, but do not actually create the table
+	CREATE VIEW [Hosts and Listings] AS SELECT * FROM Users AS a NATURAL JOIN Listings AS b
+	
+8. Find IDs of users who have more than 10 listings that are priced at 20 dollars per day or more
+	SELECT u_id FROM Users AS a NATUAL JOIN Listings AS b WHERE b.price=>20 HAVING COUNT(l_id)>10
+
+9. Find the Cities of users and the listings that belong to the cities by highest rating
+	SELECT u_id, u_city FROM Users AS a NATURAL JOIN Listings AS b GROUP BY a.u_city SORT BY b.l_rating DESC
+	
+10. Find all user IDs who have booked at 3980 Clyde Gallagher Junction 5 or more times
+	SELECT u_id FROM Users AS a NATURAL JOIN BookingsHistory AS b WHERE b.l_address="3980 Clyde Gallagher Junction" HAVING COUNT(u_id)>=5 GROUP BY a.u_id
